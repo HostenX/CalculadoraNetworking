@@ -2,44 +2,60 @@ function calcular(){
 
 
     //obtener valores de entrada (IP y Prefijo)
-    var valido;
-    var error;
     var ip = document.getElementById("ip").value;
     var prefix = parseInt(document.getElementById("prefix").value);
-    var newFirstByte = parseInt(ip.split(".")[0]);
+
+    //Verificar Errores
+
+    var error;
+    var invalido;
+    var mayor = false;
+
+    //Verificar valores superiores a 255 en la IP
     for ( var i = 0 ; i <32; i+= 8){
         //Byte de la direccion IP
         var newByte = parseInt(ip.split(".")[i/8]);
         if(newByte>255){
-            valido = false;
+            mayor = true;
         }
-    }
-    if (prefix > 30 || newFirstByte > 255 || valido == false){
-        alert("Datos invalidos");
-        error=true;
-    }
-    if (newFirstByte >= 1 && newFirstByte <= 127){
+
+    //verificar Rangos de prefijo invalidos segun su clase
+    if (newByte >= 1 && newByte <= 127){
         if(prefix<8){
             alert("prefijo menor a 8 en una clase A");
             error=true;
         }
     }
     
-    if (newFirstByte >= 128 && newFirstByte <= 191){
+    if (newByte >= 128 && newByte <= 191){
         if(prefix<16){
             alert("prefijo menor a 16 en una clase B");
             error=true;
         }
     }
 
-    if (newFirstByte >= 192 && newFirstByte <= 255){
+    if (newByte >= 192 && newByte <= 255){
         if(prefix<24){
             alert("prefijo menor a 24 en una clase C, D, E");
             error=true;
     }
     }
-else{
+    }
 
+    //Comprobar si se encontraron fallos y asi mismo dar mensajes de error o evitar el calculo
+
+    if(mayor){
+        alert("Se detecto un valor de IP superior a 255, revise su IP");
+    }
+    
+    if(mayor || error){
+        document.getElementById("identificador").value = "";
+        document.getElementById("rango").value = "";
+        document.getElementById("broadcast").value = "";
+        document.getElementById("tipo").value = "";
+        document.getElementById("usuarios").value = "";
+    }
+    else{
     //Crear la mascara con el prefijo
     var mascara = "";
     for(var i = 0; i<32; i++){
@@ -107,21 +123,23 @@ else{
     } else if (firstByte >= 240 && firstByte <= 255) {
     tipo = "Clase E (experimental)";
     }
-
+        //Crear un rango Real aceptado por el profe (xd)
+        //Agregar 1 al último byte del rango
+        var rangoArr = rango.split(".");
+        rangoArr[3] = parseInt(rangoArr[3]) + 1;
+        var newRango = rangoArr.join(".");
+        
+    
+        //Restar 1 al último byte del broadcast
+        var broadcastArr = broadcast.split(".");
+        broadcastArr[3] = parseInt(broadcastArr[3]) - 1;
+        var newBroadcast = broadcastArr.join(".");
+    
     //Inyectar los valores a los cuadros de dialogo en la secion de salida
-    if (error){
-        document.getElementById("identificador").value = "";
-        document.getElementById("rango").value = "";
-        document.getElementById("broadcast").value = "";
-        document.getElementById("tipo").value = "";
-        document.getElementById("usuarios").value = "";
-    }
-    else{
     document.getElementById("identificador").value = identificador;
-    document.getElementById("rango").value = rango + " - " + broadcast;
     document.getElementById("broadcast").value = broadcast;
     document.getElementById("tipo").value = tipo;
     document.getElementById("usuarios").value = usuarios.toString();
+    document.getElementById("rango").value = newRango + " - " + newBroadcast;
     }
-}
 }
