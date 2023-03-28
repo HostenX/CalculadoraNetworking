@@ -8,7 +8,6 @@ function calcular(){
     //Verificar Errores
 
     var error;
-    var invalido;
     var mayor = false;
 
     //Verificar valores superiores a 255 en la IP
@@ -40,6 +39,11 @@ function calcular(){
             error=true;
     }
     }
+    }
+    //Verificar cuando se detecte un prefijo mayor a 30
+    if(prefix>30){
+        alert("se detecto un prefijo mayor a 30, por favor cambiarlo");
+        error = true;
     }
 
     //Comprobar si se encontraron fallos y asi mismo dar mensajes de error o evitar el calculo
