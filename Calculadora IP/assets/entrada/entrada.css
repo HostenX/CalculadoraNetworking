@@ -1,0 +1,4 @@
+.entrada{
+    display: flex;
+    flex-direction: column;
+}

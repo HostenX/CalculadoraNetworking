@@ -1,0 +1,12 @@
+@font-face {
+    font-family: DIN-Round;
+    src: url(./fonts/DINRoundPro-Medi.ttf);
+}
+
+.cabecera{
+    padding: auto;
+    border: none;
+    background-color: #0c2e44;
+    display: flex;
+    justify-content: center;
+}

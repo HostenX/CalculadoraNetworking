@@ -1,0 +1,4 @@
+.salida{
+    display: flex;
+    flex-direction: column;
+}
