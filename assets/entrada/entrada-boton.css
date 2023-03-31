@@ -1,0 +1,16 @@
+.entrada__boton{
+    width: 150px;
+    height: 75px;
+    background-color: darkcyan;
+    color: white;
+    font-size: 17px;
+    font-family: DIN-Round;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: .3s ease all;
+}
+.entrada__boton:hover{
+    background-color: rgb(0, 80, 80);
+}

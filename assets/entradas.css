@@ -1,0 +1,12 @@
+@font-face {
+    font-family: DIN-Round;
+    src: url(./fonts/DINRoundPro-Medi.ttf);
+}
+
+.entradas{
+    background-color: #0c2e44;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    padding-bottom: 2rem;
+}  
