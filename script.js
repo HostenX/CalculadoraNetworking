@@ -26,14 +26,14 @@ function calcular(){
         }
     }
     
-    if (newByte >= 128 && newByte <= 191){
+    else if (newByte >= 128 && newByte <= 191){
         if(prefix<16){
             alert("prefijo menor a 16 en una clase B");
             error=true;
         }
     }
 
-    if (newByte >= 192 && newByte <= 255){
+    else if (newByte >= 192 && newByte <= 255){
         if(prefix<24){
             alert("prefijo menor a 24 en una clase C, D, E");
             error=true;
